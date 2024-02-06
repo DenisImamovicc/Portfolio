@@ -153,8 +153,6 @@ audio{
   margin-bottom: 0.5rem;
 }
 
-
-
 .project-buttons:hover {
   background-image: linear-gradient(to right, lightblue , rgb(173, 42, 173));
 }
@@ -222,47 +220,3 @@ i:hover {
   color: black;
   background-color: white;
 }
-
-/* @media screen and (min-width:768px) {
-  audio{
-      position: fixed;
-      bottom: 0px;
-      left: 5px;
-      width: 300px;
-  }
-
-  .projects {
-      flex-direction: row;
-      height: fit-content;
-  }
-
-  .project-titel {
-      margin: 1rem 1rem 0 1rem;
-      font-size: 1.5rem;
-      font-weight: lighter;
-      text-align: start;
-  }
-
-  .project-img {
-      height: auto;
-      width: 50%;
-  }
-  .project-nonimg{
-      width: 100%;
-  }
-
-  #project-button-group{
-      display: flex;
-      justify-content: right;
-  }
-  .project-buttons{
-      width: fit-content;
-      height: fit-content;
-      margin: 0.5rem;
-  }
-
-  .project-tools-list{
-      height: fit-content;
-  }
-
-} */
