@@ -37,34 +37,13 @@ const renderRepos = (repos:UserRepos) => {
     return repos.map(repo => {
         ProjectList.innerHTML += 
         `          
-        <div>
-            <img
-            src="./public/project1.png"
-            loading="lazy"
-            alt="${repo.name}"
-            class="project-img"
-            />
-            <div class="project-nonimg">
-                <h3 class="project-titel">${repo.name}</h3>
-                <ul class="project-tools-list">
-                    <li class="tool">HTML</li>
-                    <li class="tool">CSS</li>
-                    <li class="tool">Bootstrap</li>
-                    <li class="tool">React</li>
-                    <li class="tool">SQL</li> 
-
-                </ul>
-                <p class="project-p">
-                ${repo.description}
-                </p>
-                <ul id="project-button-group">
-                    <li class="project-buttons">
-                        <a href="${repo.homepage}" class="button-link">Live Test</a>
-                    </li>
-                    <li class="project-buttons">
-                        <a href="${repo.svn_url}" class="button-link">Check code</a>
-                    </li>
-                </ul>
+        <div class="card text-bg-info mb-2 col-12 col-md-5 col-lg-4 shadow-lg " style="width: 18rem;">
+            <img src="https://placehold.co/600x400" class="card-img-top" alt="${repo.name}">
+            <div class="card-body">
+                <h5 class="card-title ">${repo.name}</h5>
+                <p class="card-text">${repo.description}</p>
+                <a href="${repo.homepage}" class="btn btn-primary button-link mb-2 project-buttons" target = blank>Live Test</a>
+                <a href="${repo.svn_url}" class="btn btn-primary button-link project-buttons" target = blank>Check code</a>
             </div>
         </div>
       `
