@@ -10,4 +10,5 @@ export type UserRepos = {
 
 export type RepoReadme = {
         content:string
-}[]
+        message?:string
+}

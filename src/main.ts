@@ -1,7 +1,7 @@
 import { ProjectList } from './DOM-selectors';
 import { getMyRepos, getRepoReadme } from './Github-Api'
 import './style.css'
-import { UserRepos,RepoReadme } from './types'
+import { UserRepos} from './types'
 
 
 window.addEventListener("load",async() => {
@@ -50,7 +50,7 @@ const renderRepos = async (repos:UserRepos) => {
     })
 }
 
-const handleImgRender = (url) => {
+const handleImgRender = (url:String) => {
     if (url) {
         return url
     } else {
@@ -80,7 +80,7 @@ const getRepoPreviewImg = async(repos:UserRepos) => {
     console.log(repoReadMes);
     const repoImgs = repoReadMes.map(readme => {
         if (readme.message) {
-            return
+            return getImgUrlFromContent("")
         }
         return getImgUrlFromContent(readme.content)
     });
@@ -89,7 +89,7 @@ const getRepoPreviewImg = async(repos:UserRepos) => {
 }
 
 
-const getImgUrlFromContent = (content) => {
+const getImgUrlFromContent = (content:String) => {
     const regex = /!\[Preview_img\]\((.*?)\)/;
     const match = content.match(regex);
     
@@ -99,6 +99,7 @@ const getImgUrlFromContent = (content) => {
         return url
     } else {
         console.log("No URL found");
+        return "https://placehold.co/600x400"
     }
 }
 
