@@ -1,7 +1,7 @@
 import { ProjectList } from './DOM-selectors';
-import { getMyRepos } from './Github-Api'
+import { getMyRepos, getRepoReadme } from './Github-Api'
 import './style.css'
-import { UserRepos } from './types'
+import { UserRepos,RepoReadme } from './types'
 
 
 window.addEventListener("load",async() => {
@@ -12,6 +12,7 @@ window.addEventListener("load",async() => {
         console.log(myRepos);
     } catch (error) {
         console.log(error);
+        renderRepos([])
     }
 
     if (!myRepos) {
@@ -26,19 +27,18 @@ window.addEventListener("load",async() => {
     })
     console.log(myPortfolioRepos);
     renderRepos(myPortfolioRepos)
-
 })
 
-const renderRepos = (repos:UserRepos) => {
+const renderRepos = async (repos:UserRepos) => {
     if (!repos.length) {
         return ProjectList.innerHTML = "<h3>No projects found!</h3>"
     }
-
-    return repos.map(repo => {
+    const repoImgs = await getRepoPreviewImg(repos)
+    return repos.map((repo,index) => {
         ProjectList.innerHTML += 
         `          
         <div class="card text-bg-info mb-2 col-12 col-md-5 col-lg-4 shadow-lg " style="width: 18rem;">
-            <img src="https://placehold.co/600x400" class="card-img-top" alt="${repo.name}">
+            <img src="${handleImgRender(repoImgs[index])}" class="card-img-top" alt="${repo.name}">
             <div class="card-body">
                 <h5 class="card-title ">${repo.name}</h5>
                 <p class="card-text">${repo.description}</p>
@@ -50,8 +50,57 @@ const renderRepos = (repos:UserRepos) => {
     })
 }
 
+const handleImgRender = (url) => {
+    if (url) {
+        return url
+    } else {
+        return "https://placehold.co/600x400"
+    }
+}
 
 
+const getRepoPreviewImg = async(repos:UserRepos) => {
+    const repoNames = repos.map(repo => {
+        return repo.name
+    })
+    console.log(repoNames);
+    let repoReadMes = []
+
+    for (const name of repoNames) {
+        repoReadMes.push(await getRepoReadme(name)) 
+        
+    }
+    console.log(repoReadMes);
+    repoReadMes.forEach(readMe => {
+        if (readMe.message) {
+            return
+        }
+        readMe.content = atob(readMe.content)
+    });
+    console.log(repoReadMes);
+    const repoImgs = repoReadMes.map(readme => {
+        if (readme.message) {
+            return
+        }
+        return getImgUrlFromContent(readme.content)
+    });
+    console.log(repoImgs);
+    return repoImgs
+}
+
+
+const getImgUrlFromContent = (content) => {
+    const regex = /!\[Preview_img\]\((.*?)\)/;
+    const match = content.match(regex);
+    
+    if (match) {
+        const url = match[1];
+        console.log(url);
+        return url
+    } else {
+        console.log("No URL found");
+    }
+}
 
 
 

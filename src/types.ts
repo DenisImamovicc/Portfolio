@@ -7,3 +7,7 @@ export type UserRepos = {
         description:string,
         homepage:string
 }[]
+
+export type RepoReadme = {
+        content:string
+}[]
