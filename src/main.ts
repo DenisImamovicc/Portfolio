@@ -38,7 +38,9 @@ const renderRepos = async (repos:UserRepos) => {
         ProjectList.innerHTML += 
         `          
         <div class="card text-bg-info mb-2 col-12 col-md-5 col-lg-4 shadow-lg " style="width: 18rem;">
-            <img src="${handleImgRender(repoImgs[index])}" class="card-img-top" alt="${repo.name}">
+            <a href="${handleImgRender(repoImgs[index])}" target="_blank">
+                <img src="${handleImgRender(repoImgs[index])}" class="card-img-top" alt="${repo.name}">
+            </a>
             <div class="card-body">
                 <h5 class="card-title ">${repo.name}</h5>
                 <p class="card-text">${repo.description}</p>

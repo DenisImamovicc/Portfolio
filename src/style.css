@@ -13,17 +13,8 @@ body::-webkit-scrollbar {
 }
 
 #navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  position: fixed;
-
-  top: 0;
-  right: 0;
-  min-width: 100%;
   background-image: linear-gradient(to right, black , rgb(177, 81, 177));
   color: purple;
-  z-index: 2;
 }
 
 #navbar:hover{
