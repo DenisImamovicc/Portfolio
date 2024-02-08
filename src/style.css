@@ -63,6 +63,7 @@ audio{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-shadow: 3px 3px black;
 
   /* background-image: url(images/welcome-section-background.png); */
   background-repeat: no-repeat;
@@ -177,7 +178,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  text-shadow: 4px 3px black;
   background-image: url("../public/Contact-bg-image.gif");
   background-repeat: no-repeat;
   background-position: center;
@@ -210,4 +211,5 @@ i {
 i:hover {
   color: black;
   background-color: white;
+  text-shadow: none;
 }
